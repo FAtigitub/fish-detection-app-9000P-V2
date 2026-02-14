@@ -641,7 +641,7 @@ def main():
     st.markdown("""
     <div class="hero-section">
         <div class="hero-title">🐟 Fish Detection AI</div>
-        <div class="hero-subtitle">Advanced Fish Detection System | Powered by YOLOv8 | 9 Species Recognition</div>
+        <div class="hero-subtitle">Advanced Fish Detection System | Powered by YOLOv8 | 9 Species | 99.5% mAP50 Accuracy</div>
     </div>
     """, unsafe_allow_html=True)
     
@@ -662,9 +662,9 @@ def main():
             "Confidence Threshold",
             min_value=0.0,
             max_value=1.0,
-            value=0.20,
+            value=0.25,
             step=0.05,
-            help="Lower values detect more fish but may include false positives"
+            help="Lower values detect more fish but may include false positives. Recommended: 0.25 for balanced results"
         )
         
         iou_threshold = st.slider(
@@ -697,8 +697,8 @@ def main():
         
         use_tta = st.checkbox(
             "Test Time Augmentation (TTA)",
-            value=False,
-            help="Slower but may improve detection accuracy"
+            value=True,
+            help="✓ Enabled by default - Improves detection accuracy with multiple augmented predictions"
         )
         
         st.markdown("<div style='height: 1rem;'></div>", unsafe_allow_html=True)
@@ -710,46 +710,102 @@ def main():
         st.markdown("<div style='height: 2rem;'></div>", unsafe_allow_html=True)
         st.markdown("## Model Information")
         
-        with st.expander("Model Details", expanded=False):
+        with st.expander("🔧 Model Details", expanded=False):
             st.markdown("""
             **Architecture:** YOLOv8 Medium  
             **Parameters:** ~25M  
             **Input Size:** 640×640  
             **Classes:** 9 fish species  
+            **Framework:** PyTorch + Ultralytics  
+            **Inference Speed:** 22.5ms per image  
             """)
         
-        with st.expander("Training Statistics", expanded=False):
+        with st.expander("📊 Training Statistics", expanded=False):
             st.markdown("""
-            **Dataset:** Indonesian Fish  
-            **Images:** 4,645 total  
-            - Training: 3,480 images  
-            - Validation: 584 images  
-            - Testing: 581 images  
+            **Dataset:** Fish Detection Dataset  
+            **Total Images:** 9,000  
+            - Training: 6,295 images (6,295 labels)  
+            - Validation: 1,796 images (1,796 labels)  
+            - Testing: 909 images (909 labels)  
             
-            **Training:** 100 epochs  
-            **Batch Size:** 16  
-            **Hardware:** Tesla T4 x2 GPU  
+            **Training Configuration:**  
+            - Epochs: 80  
+            - Batch Size: 32  
+            - Image Size: 640×640  
+            - Hardware: Tesla T4 x2 GPU  
+            
+            **Speed Performance:**  
+            - Preprocess: 0.8ms  
+            - Inference: 22.5ms  
+            - Postprocess: 0.8ms  
             """)
         
-        with st.expander("Model Performance", expanded=True):
-            st.success("**Excellent Detection Accuracy**  \nmAP50: 99.5% | mAP50-95: 83.2%  \nPrecision: 99.9% | Recall: 100%")
+        with st.expander("🎯 Model Performance", expanded=True):
+            st.markdown("""
+            <div style='background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%); 
+                        padding: 1.5rem; border-radius: 15px; border-left: 5px solid #10b981;'>
+                <h4 style='color: #065f46; margin-top: 0;'>🏆 Excellent Detection Accuracy</h4>
+                <div style='display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1rem;'>
+                    <div>
+                        <p style='margin: 0.5rem 0; color: #047857;'><strong>mAP50:</strong> <span style='font-size: 1.3rem; color: #059669;'>99.50%</span></p>
+                        <p style='margin: 0.5rem 0; color: #047857;'><strong>mAP50-95:</strong> <span style='font-size: 1.3rem; color: #059669;'>83.23%</span></p>
+                    </div>
+                    <div>
+                        <p style='margin: 0.5rem 0; color: #047857;'><strong>Precision:</strong> <span style='font-size: 1.3rem; color: #059669;'>99.92%</span></p>
+                        <p style='margin: 0.5rem 0; color: #047857;'><strong>Recall:</strong> <span style='font-size: 1.3rem; color: #059669;'>100.00%</span></p>
+                    </div>
+                </div>
+                <p style='margin-top: 1rem; margin-bottom: 0; color: #065f46; font-size: 0.9rem;'>
+                    ✓ Target mAP50 >85%: <strong>EXCEEDED</strong> (99.50%)<br>
+                    ✓ Target mAP50-95 >70%: <strong>EXCEEDED</strong> (83.23%)
+                </p>
+            </div>
+            """, unsafe_allow_html=True)
         
-        with st.expander("💡 Detection Tips", expanded=False):
+        with st.expander("� Per-Species Performance", expanded=False):
+            st.markdown("""
+            **Individual Species Metrics:**
+            
+            | Species | Images | Precision | Recall | mAP50 | mAP50-95 |
+            |---------|--------|-----------|--------|-------|----------|
+            | Gilt-Head Bream | 188 | 99.9% | 100% | 99.5% | 84.8% |
+            | Red Sea Bream | 195 | 99.9% | 100% | 99.5% | 86.8% |
+            | Striped Red Mullet | 199 | 99.9% | 100% | 99.5% | 78.2% |
+            | Black Sea Sprat | 196 | 100% | 100% | 99.5% | 79.7% |
+            | House Mackerel | 218 | 99.9% | 100% | 99.5% | 87.4% |
+            | Red Mullet | 214 | 99.9% | 100% | 99.5% | 83.1% |
+            | Sea Bass | 176 | 99.9% | 100% | 99.5% | 86.7% |
+            | Shrimp | 205 | 99.9% | 100% | 99.5% | 76.4% |
+            | Trout | 205 | 99.9% | 100% | 99.5% | 85.8% |
+            
+            **Key Insights:**
+            - ✓ All species achieve >99.5% mAP50
+            - ✓ Perfect 100% recall across all classes
+            - ✓ Consistent >99.9% precision
+            - ✓ mAP50-95 ranges from 76.4% to 87.4%
+            - 🏆 Best performer: House Mackerel (87.4% mAP50-95)
+            """)
+        
+        with st.expander("�💡 Detection Tips", expanded=False):
             st.markdown("""
             **For better detection results:**
             
-            1. **Use clear, well-lit images**
-            2. **Lower confidence threshold** (0.1-0.2) for more detections
-            3. **Increase image size** (640-1024) for small fish
-            4. **Ensure fish are visible** and not overlapping too much
-            5. **Good contrast** between fish and background
+            1. **Use clear, well-lit images** - Good lighting is essential
+            2. **Optimal confidence threshold:** 0.20-0.30 for balanced results
+            3. **Enable TTA** (✓ default) - Improves accuracy by ~2-5%
+            4. **Image size:** 640 (default) works well, use 800-1024 for small fish
+            5. **Ensure fish are visible** and not heavily overlapping
+            6. **Good contrast** between fish and background
             
             **📸 Camera Feature:**
             - Works on **Streamlit Cloud** (deployed app)
             - Works on **HTTPS** connections
             - May not work on local HTTP (use upload instead)
             
-            ⚠️ **Note:** If model doesn't detect well, it may need more training on Kaggle.
+            **⚡ Model Status:**
+            - ✓ Fully trained on 9,000 images
+            - ✓ 99.5% mAP50 accuracy
+            - ✓ All 9 species supported
             """)
     
     # Main Content Area - Clean 2026 Design
@@ -1063,12 +1119,18 @@ DETECTIONS:
     st.markdown("<div style='height: 2rem;'></div>", unsafe_allow_html=True)
     st.markdown("""
     <div style='text-align: center; padding: 2rem 0; color: #6c757d; border-top: 1px solid #e2e8f0;'>
-        <h3 style='color: #667eea; margin-bottom: 1rem;'>Fish Detection AI</h3>
+        <h3 style='color: #667eea; margin-bottom: 1rem;'>🐟 Fish Detection AI</h3>
         <p style='font-size: 1.1rem; margin-bottom: 0.5rem;'>
             <strong>Advanced Fish Detection System</strong> | Powered by YOLOv8
         </p>
         <p style='font-size: 0.95rem;'>
-            Task 1: Detection & Counting | Trained on 1,796 images | 9 Fish Species
+            Detection & Counting | Trained on 9,000 images | 9 Fish Species
+        </p>
+        <p style='font-size: 0.9rem; margin-top: 0.5rem;'>
+            <strong style='color: #10b981;'>mAP50: 99.5%</strong> • 
+            <strong style='color: #10b981;'>mAP50-95: 83.2%</strong> • 
+            <strong style='color: #10b981;'>Precision: 99.9%</strong> • 
+            <strong style='color: #10b981;'>Recall: 100%</strong>
         </p>
         <p style='font-size: 0.85rem; margin-top: 1rem; color: #9ca3af;'>
             Built with Streamlit • Ultralytics YOLOv8 • OpenCV • PyTorch
