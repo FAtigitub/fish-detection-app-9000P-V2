@@ -622,6 +622,100 @@ st.markdown("""
     [data-testid="stCameraInput"]:hover {
         box-shadow: 0 5px 20px rgba(102, 126, 234, 0.2);
     }
+    
+    /* Advanced Animations for Interactive Statistics */
+    @keyframes slideIn {
+        from {
+            width: 0%;
+            opacity: 0;
+        }
+        to {
+            width: var(--target-width);
+            opacity: 1;
+        }
+    }
+    
+    @keyframes shimmer {
+        0% {
+            background-position: -1000px 0;
+        }
+        100% {
+            background-position: 1000px 0;
+        }
+    }
+    
+    @keyframes scaleIn {
+        from {
+            transform: scale(0.8);
+            opacity: 0;
+        }
+        to {
+            transform: scale(1);
+            opacity: 1;
+        }
+    }
+    
+    @keyframes glow {
+        0%, 100% {
+            box-shadow: 0 0 5px rgba(102, 126, 234, 0.5);
+        }
+        50% {
+            box-shadow: 0 0 20px rgba(102, 126, 234, 0.8);
+        }
+    }
+    
+    /* Enhanced Statistics Cards with Glassmorphism */
+    .stats-card-enhanced {
+        background: rgba(255, 255, 255, 0.9);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .stats-card-enhanced:hover {
+        transform: translateY(-8px) scale(1.03);
+        box-shadow: 0 15px 45px rgba(102, 126, 234, 0.3);
+    }
+    
+    /* Animated Progress Bars */
+    .progress-bar-animated {
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .progress-bar-animated::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+        animation: shimmer 2s infinite;
+    }
+    
+    /* Interactive Hover Effects */
+    .interactive-card {
+        cursor: pointer;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .interactive-card:hover {
+        transform: translateX(8px);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    }
+    
+    /* Confidence Badge Animations */
+    .confidence-badge {
+        animation: scaleIn 0.5s ease-out;
+        transition: all 0.3s ease;
+    }
+    
+    .confidence-badge:hover {
+        transform: scale(1.1);
+        filter: brightness(1.1);
+    }
 </style>
 """, unsafe_allow_html=True)
 
@@ -956,73 +1050,214 @@ The model file size is small ({:.1f} MB), suggesting it may not be fully trained
                     st.image(annotated_img_rgb, use_column_width=True)
                     st.markdown('</div>', unsafe_allow_html=True)
                     
-                    # Statistics Cards
+                    # Statistics Cards - Enhanced Interactive Design
                     st.markdown("<div style='height: 1rem;'></div>", unsafe_allow_html=True)
-                    st.markdown("### Detection Statistics")
+                    st.markdown("### 📊 Detection Analytics")
                     
-                    col_stat1, col_stat2 = st.columns(2)
+                    # Top-level metrics with animated cards
+                    col_stat1, col_stat2, col_stat3 = st.columns(3)
                     
                     with col_stat1:
-                        st.markdown("""
+                        st.markdown(f"""
                         <div class="stats-card">
-                            <div class="stat-value">{}</div>
+                            <div class="stat-value">{len(detections)}</div>
                             <div class="stat-label">Total Fish</div>
                         </div>
-                        """.format(len(detections)), unsafe_allow_html=True)
+                        """, unsafe_allow_html=True)
                     
                     with col_stat2:
                         unique_species = len(set([d['class'] for d in detections]))
-                        st.markdown("""
+                        st.markdown(f"""
                         <div class="stats-card">
-                            <div class="stat-value">{}</div>
+                            <div class="stat-value">{unique_species}</div>
                             <div class="stat-label">Species Found</div>
                         </div>
-                        """.format(unique_species), unsafe_allow_html=True)
+                        """, unsafe_allow_html=True)
                     
-                    # Detailed Detections
+                    with col_stat3:
+                        avg_confidence = np.mean([d['confidence'] for d in detections]) if detections else 0
+                        st.markdown(f"""
+                        <div class="stats-card">
+                            <div class="stat-value">{avg_confidence:.0%}</div>
+                            <div class="stat-label">Avg Confidence</div>
+                        </div>
+                        """, unsafe_allow_html=True)
+                    
+                    # Detailed Detections with Interactive Elements
                     if detections:
                         st.markdown("<div style='height: 1.5rem;'></div>", unsafe_allow_html=True)
-                        st.markdown("### Detailed Detection List")
                         
-                        # Summary metrics
-                        avg_confidence = np.mean([d['confidence'] for d in detections])
-                        st.markdown(f"**Average Confidence:** {avg_confidence:.1%}")
+                        # Species Distribution Analysis
+                        st.markdown("#### 🐠 Species Distribution")
+                        species_counts = {}
+                        for det in detections:
+                            species_counts[det['class']] = species_counts.get(det['class'], 0) + 1
                         
-                        st.markdown("---")
-                        
-                        for i, det in enumerate(detections, 1):
+                        # Create interactive progress bars for each species
+                        max_count = max(species_counts.values())
+                        for species, count in sorted(species_counts.items(), key=lambda x: x[1], reverse=True):
+                            percentage = (count / len(detections)) * 100
+                            bar_width = (count / max_count) * 100
                             
-                            with st.expander(
-                                f"Fish #{i}: {det['class']} ({det['confidence']:.1%})",
-                                expanded=False
-                            ):
-                                col_det1, col_det2 = st.columns(2)
-                                
-                                with col_det1:
-                                    st.markdown(f"""
-                                    <div class="detection-box">
-                                        <div class="detection-title">Species</div>
-                                        <div class="detection-value">{det['class']}</div>
-                                    </div>
-                                    """, unsafe_allow_html=True)
-                                    
-                                    st.markdown(f"""
-                                    <div class="detection-box">
-                                        <div class="detection-title">Class ID</div>
-                                        <div class="detection-value">{det['class_id']}</div>
-                                    </div>
-                                    """, unsafe_allow_html=True)
-                                
-                                with col_det2:
-                                    confidence_color = "#10b981" if det['confidence'] > 0.7 else "#fb923c" if det['confidence'] > 0.4 else "#ef4444"
-                                    st.markdown(f"""
-                                    <div class="detection-box">
-                                        <div class="detection-title">Confidence</div>
-                                        <div class="detection-value" style="color: {confidence_color}">
-                                            {det['confidence']:.2%}
+                            # Color coding based on count
+                            if count >= max_count * 0.7:
+                                color = "#10b981"  # Green
+                                bg_color = "#d1fae5"
+                            elif count >= max_count * 0.4:
+                                color = "#3b82f6"  # Blue
+                                bg_color = "#dbeafe"
+                            else:
+                                color = "#f59e0b"  # Orange
+                                bg_color = "#fef3c7"
+                            
+                            st.markdown(f"""
+                            <div style='margin: 0.8rem 0; padding: 1rem; background: {bg_color}; 
+                                        border-radius: 12px; border-left: 4px solid {color};
+                                        transition: all 0.3s ease; cursor: pointer;'
+                                 onmouseover="this.style.transform='translateX(5px)'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.1)';"
+                                 onmouseout="this.style.transform='translateX(0)'; this.style.boxShadow='none';">
+                                <div style='display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;'>
+                                    <span style='font-weight: 600; color: #1f2937; font-size: 1rem;'>{species}</span>
+                                    <span style='font-weight: 700; color: {color}; font-size: 1.1rem;'>{count} fish ({percentage:.1f}%)</span>
+                                </div>
+                                <div style='background: white; height: 8px; border-radius: 10px; overflow: hidden; box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);'>
+                                    <div style='background: linear-gradient(90deg, {color}, {color}dd); 
+                                                height: 100%; width: {bar_width}%; 
+                                                border-radius: 10px;
+                                                animation: slideIn 0.8s ease-out;
+                                                box-shadow: 0 0 10px {color}66;'></div>
+                                </div>
+                            </div>
+                            """, unsafe_allow_html=True)
+                        
+                        # Confidence Level Breakdown
+                        st.markdown("<div style='height: 1.5rem;'></div>", unsafe_allow_html=True)
+                        st.markdown("#### 📈 Confidence Analysis")
+                        
+                        # Calculate confidence distribution
+                        high_conf = len([d for d in detections if d['confidence'] >= 0.7])
+                        medium_conf = len([d for d in detections if 0.4 <= d['confidence'] < 0.7])
+                        low_conf = len([d for d in detections if d['confidence'] < 0.4])
+                        
+                        total = len(detections)
+                        
+                        # Interactive confidence breakdown with animated bars
+                        confidence_data = [
+                            ("High (≥70%)", high_conf, "#10b981", "#d1fae5"),
+                            ("Medium (40-70%)", medium_conf, "#f59e0b", "#fef3c7"),
+                            ("Low (<40%)", low_conf, "#ef4444", "#fee2e2")
+                        ]
+                        
+                        for label, count, color, bg_color in confidence_data:
+                            percentage = (count / total * 100) if total > 0 else 0
+                            st.markdown(f"""
+                            <div style='margin: 0.8rem 0; padding: 1.2rem; 
+                                        background: linear-gradient(135deg, {bg_color} 0%, white 100%);
+                                        border-radius: 15px; border: 2px solid {color}33;
+                                        transition: all 0.3s ease;'
+                                 onmouseover="this.style.borderColor='{color}'; this.style.transform='scale(1.02)';"
+                                 onmouseout="this.style.borderColor='{color}33'; this.style.transform='scale(1)';">
+                                <div style='display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.8rem;'>
+                                    <span style='font-weight: 600; color: #1f2937; font-size: 1.05rem;'>
+                                        <span style='display: inline-block; width: 12px; height: 12px; 
+                                                     background: {color}; border-radius: 50%; margin-right: 8px;'></span>
+                                        {label}
+                                    </span>
+                                    <span style='font-weight: 700; color: {color}; font-size: 1.2rem;'>{count}</span>
+                                </div>
+                                <div style='background: #f3f4f6; height: 12px; border-radius: 10px; overflow: hidden;'>
+                                    <div style='background: linear-gradient(90deg, {color}, {color}cc); 
+                                                height: 100%; width: {percentage}%; 
+                                                border-radius: 10px;
+                                                animation: slideIn 1s ease-out;
+                                                position: relative;
+                                                box-shadow: 0 2px 8px {color}44;'>
+                                        <div style='position: absolute; right: 8px; top: 50%; transform: translateY(-50%);
+                                                    color: white; font-size: 0.75rem; font-weight: 600;'>
+                                            {percentage:.1f}%
                                         </div>
                                     </div>
-                                    """, unsafe_allow_html=True)
+                                </div>
+                            </div>
+                            """, unsafe_allow_html=True)
+                        
+                        # Overall Statistics Summary Box
+                        st.markdown("<div style='height: 1.5rem;'></div>", unsafe_allow_html=True)
+                        min_conf = min([d['confidence'] for d in detections])
+                        max_conf = max([d['confidence'] for d in detections])
+                        
+                        st.markdown(f"""
+                        <div style='background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                                    padding: 1.5rem; border-radius: 20px; color: white;
+                                    box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+                                    margin: 1rem 0;'>
+                            <h4 style='margin: 0 0 1rem 0; font-size: 1.2rem; font-weight: 700;'>
+                                📊 Summary Statistics
+                            </h4>
+                            <div style='display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;'>
+                                <div style='background: rgba(255,255,255,0.15); padding: 1rem; border-radius: 12px;
+                                            backdrop-filter: blur(10px);'>
+                                    <div style='font-size: 0.85rem; opacity: 0.9; margin-bottom: 0.3rem;'>Average Confidence</div>
+                                    <div style='font-size: 1.8rem; font-weight: 800;'>{avg_confidence:.1%}</div>
+                                </div>
+                                <div style='background: rgba(255,255,255,0.15); padding: 1rem; border-radius: 12px;
+                                            backdrop-filter: blur(10px);'>
+                                    <div style='font-size: 0.85rem; opacity: 0.9; margin-bottom: 0.3rem;'>Confidence Range</div>
+                                    <div style='font-size: 1.4rem; font-weight: 700;'>{min_conf:.0%} - {max_conf:.0%}</div>
+                                </div>
+                            </div>
+                        </div>
+                        """, unsafe_allow_html=True)
+                        
+                        # Detailed Detection List
+                        st.markdown("<div style='height: 1.5rem;'></div>", unsafe_allow_html=True)
+                        st.markdown("#### 🔍 Individual Detections")
+                        
+                        for i, det in enumerate(detections, 1):
+                            # Color based on confidence
+                            if det['confidence'] >= 0.7:
+                                badge_color = "#10b981"
+                                badge_bg = "#d1fae5"
+                            elif det['confidence'] >= 0.4:
+                                badge_color = "#f59e0b"
+                                badge_bg = "#fef3c7"
+                            else:
+                                badge_color = "#ef4444"
+                                badge_bg = "#fee2e2"
+                            
+                            with st.expander(
+                                f"🐟 Fish #{i}: {det['class']} - {det['confidence']:.1%}",
+                                expanded=False
+                            ):
+                                st.markdown(f"""
+                                <div style='padding: 0.5rem;'>
+                                    <div style='display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;'>
+                                        <div style='background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+                                                    padding: 1rem; border-radius: 12px; border-left: 4px solid #667eea;'>
+                                            <div style='color: #6c757d; font-size: 0.85rem; margin-bottom: 0.3rem;'>Species</div>
+                                            <div style='color: #667eea; font-weight: 700; font-size: 1.1rem;'>{det['class']}</div>
+                                        </div>
+                                        <div style='background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+                                                    padding: 1rem; border-radius: 12px; border-left: 4px solid #667eea;'>
+                                            <div style='color: #6c757d; font-size: 0.85rem; margin-bottom: 0.3rem;'>Class ID</div>
+                                            <div style='color: #667eea; font-weight: 700; font-size: 1.1rem;'>{det['class_id']}</div>
+                                        </div>
+                                    </div>
+                                    <div style='background: {badge_bg}; padding: 1.2rem; border-radius: 12px;
+                                                border-left: 4px solid {badge_color};'>
+                                        <div style='color: #1f2937; font-size: 0.85rem; margin-bottom: 0.5rem;'>Confidence Score</div>
+                                        <div style='display: flex; align-items: center; gap: 1rem;'>
+                                            <div style='flex: 1; background: white; height: 10px; border-radius: 10px; overflow: hidden;'>
+                                                <div style='background: {badge_color}; height: 100%; width: {det['confidence']*100}%;
+                                                            border-radius: 10px; transition: width 0.5s ease;'></div>
+                                            </div>
+                                            <div style='color: {badge_color}; font-weight: 800; font-size: 1.3rem; min-width: 60px;'>
+                                                {det['confidence']:.1%}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                """, unsafe_allow_html=True)
                     else:
                         st.info("No fish detected. Try adjusting the confidence threshold in the sidebar.")
                     
