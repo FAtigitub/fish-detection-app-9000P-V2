@@ -1032,7 +1032,7 @@ The model file size is small ({:.1f} MB), suggesting it may not be fully trained
                     
                     # Download Section
                     st.markdown("---")
-                    st.markdown("### 💾 Download Results"))
+                    st.markdown("### 💾 Download Results")
                     
                     col_dl1, col_dl2 = st.columns(2)
                     
