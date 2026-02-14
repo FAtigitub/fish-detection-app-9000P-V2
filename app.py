@@ -10,7 +10,7 @@ from datetime import datetime
 
 # Page configuration
 st.set_page_config(
-    page_title="SardineVision AI - Fish Detection",
+    page_title="Fish Detection AI - YOLOv8",
     page_icon="🐟",
     layout="wide",
     initial_sidebar_state="expanded"
@@ -179,8 +179,8 @@ st.markdown("""
         letter-spacing: 1.5px;
     }
     
-    /* Sardine Alert */
-    .sardine-alert {
+    /* Fish Alert */
+    .fish-alert {
         background: linear-gradient(135deg, #ffd89b 0%, #fb923c 100%);
         color: white;
         padding: 1.5rem;
@@ -640,8 +640,8 @@ def main():
     # Hero Section
     st.markdown("""
     <div class="hero-section">
-        <div class="hero-title">🐟 SardineVision AI</div>
-        <div class="hero-subtitle">Advanced Fish Detection System | Powered by YOLOv8 | 19 Species Recognition</div>
+        <div class="hero-title">🐟 Fish Detection AI</div>
+        <div class="hero-subtitle">Advanced Fish Detection System | Powered by YOLOv8 | 9 Species Recognition</div>
     </div>
     """, unsafe_allow_html=True)
     
@@ -715,7 +715,7 @@ def main():
             **Architecture:** YOLOv8 Medium  
             **Parameters:** ~25M  
             **Input Size:** 640×640  
-            **Classes:** 19 fish species  
+            **Classes:** 9 fish species  
             """)
         
         with st.expander("Training Statistics", expanded=False):
@@ -731,8 +731,8 @@ def main():
             **Hardware:** Tesla T4 x2 GPU  
             """)
         
-        with st.expander("Special Feature", expanded=True):
-            st.success("**Sardine Detection**  \nClass 17: Tribus Sardini  \nOptimized for production line quality control")
+        with st.expander("Model Performance", expanded=True):
+            st.success("**Excellent Detection Accuracy**  \nmAP50: 99.5% | mAP50-95: 83.2%  \nPrecision: 99.9% | Recall: 100%")
         
         with st.expander("💡 Detection Tips", expanded=False):
             st.markdown("""
@@ -765,7 +765,7 @@ def main():
 The model file size is small ({:.1f} MB), suggesting it may not be fully trained. 
             
 **To train your model:**
-1. Upload the `kaggle_sardine_training.ipynb` notebook to Kaggle
+1. Upload the training notebook to Kaggle
 2. Activate Tesla T4 x2 GPU
 3. Update the dataset path
 4. Run all cells (~2-3 hours)
@@ -865,7 +865,6 @@ The model file size is small ({:.1f} MB), suggesting it may not be fully trained
                 
                 # Process detections
                 detections = []
-                sardine_count = 0
                 
                 for box in result.boxes:
                     class_id = int(box.cls[0])
@@ -877,9 +876,6 @@ The model file size is small ({:.1f} MB), suggesting it may not be fully trained
                         'confidence': confidence,
                         'class_id': class_id
                     })
-                    
-                    if class_id == 17:
-                        sardine_count += 1
                 
                 progress_bar.progress(100)
                 status_text.text("Detection complete!")
@@ -908,66 +904,24 @@ The model file size is small ({:.1f} MB), suggesting it may not be fully trained
                     st.markdown("<div style='height: 1rem;'></div>", unsafe_allow_html=True)
                     st.markdown("### Detection Statistics")
                     
-                    # Show sardines stat only if sardines are detected
-                    if sardine_count > 0:
-                        col_stat1, col_stat2, col_stat3 = st.columns(3)
-                        
-                        with col_stat1:
-                            st.markdown("""
-                            <div class="stats-card">
-                                <div class="stat-value">{}</div>
-                                <div class="stat-label">Total Fish</div>
-                            </div>
-                            """.format(len(detections)), unsafe_allow_html=True)
-                        
-                        with col_stat2:
-                            st.markdown("""
-                            <div class="stats-card">
-                                <div class="stat-value">{}</div>
-                                <div class="stat-label">Sardines</div>
-                            </div>
-                            """.format(sardine_count), unsafe_allow_html=True)
-                        
-                        with col_stat3:
-                            unique_species = len(set([d['class'] for d in detections]))
-                            st.markdown("""
-                            <div class="stats-card">
-                                <div class="stat-value">{}</div>
-                                <div class="stat-label">Species Found</div>
-                            </div>
-                            """.format(unique_species), unsafe_allow_html=True)
-                    else:
-                        # Show only 2 stats when no sardines detected
-                        col_stat1, col_stat2 = st.columns(2)
-                        
-                        with col_stat1:
-                            st.markdown("""
-                            <div class="stats-card">
-                                <div class="stat-value">{}</div>
-                                <div class="stat-label">Total Fish</div>
-                            </div>
-                            """.format(len(detections)), unsafe_allow_html=True)
-                        
-                        with col_stat2:
-                            unique_species = len(set([d['class'] for d in detections]))
-                            st.markdown("""
-                            <div class="stats-card">
-                                <div class="stat-value">{}</div>
-                                <div class="stat-label">Species Found</div>
-                            </div>
-                            """.format(unique_species), unsafe_allow_html=True)
+                    col_stat1, col_stat2 = st.columns(2)
                     
-                    # Sardine Alert
-                    if sardine_count > 0:
-                        st.markdown(
-                            f"""
-                            <div class="sardine-alert">
-                                <strong>SARDINES DETECTED!</strong><br>
-                                Found <strong>{sardine_count}</strong> sardine(s) in this image.
-                            </div>
-                            """,
-                            unsafe_allow_html=True
-                        )
+                    with col_stat1:
+                        st.markdown("""
+                        <div class="stats-card">
+                            <div class="stat-value">{}</div>
+                            <div class="stat-label">Total Fish</div>
+                        </div>
+                        """.format(len(detections)), unsafe_allow_html=True)
+                    
+                    with col_stat2:
+                        unique_species = len(set([d['class'] for d in detections]))
+                        st.markdown("""
+                        <div class="stats-card">
+                            <div class="stat-value">{}</div>
+                            <div class="stat-label">Species Found</div>
+                        </div>
+                        """.format(unique_species), unsafe_allow_html=True)
                     
                     # Detailed Detections
                     if detections:
@@ -981,8 +935,6 @@ The model file size is small ({:.1f} MB), suggesting it may not be fully trained
                         st.markdown("---")
                         
                         for i, det in enumerate(detections, 1):
-                            is_sardine = det['class_id'] == 17
-                            border_color = "#fb923c" if is_sardine else "#667eea"
                             
                             with st.expander(
                                 f"Fish #{i}: {det['class']} ({det['confidence']:.1%})",
@@ -1015,13 +967,6 @@ The model file size is small ({:.1f} MB), suggesting it may not be fully trained
                                         </div>
                                     </div>
                                     """, unsafe_allow_html=True)
-                                    
-                                    if is_sardine:
-                                        st.markdown("""
-                                        <div class="success-box">
-                                            <strong>TARGET SPECIES: SARDINE</strong>
-                                        </div>
-                                        """, unsafe_allow_html=True)
                     else:
                         st.info("No fish detected. Try adjusting the confidence threshold in the sidebar.")
                     
@@ -1037,20 +982,19 @@ The model file size is small ({:.1f} MB), suggesting it may not be fully trained
                         st.download_button(
                             label="Download Annotated Image",
                             data=result_bytes,
-                            file_name=f"sardine_detection_{timestamp}.jpg",
+                            file_name=f"fish_detection_{timestamp}.jpg",
                             mime="image/jpeg",
                             use_container_width=True
                         )
                     
                     with col_dl2:
                         # Create detection report
-                        report = f"""SARDINEVISION AI - DETECTION REPORT
+                        report = f"""FISH DETECTION - REPORT
 Generated: {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}
 {'='*50}
 
 SUMMARY:
 - Total Fish Detected: {len(detections)}
-- Sardines Found: {sardine_count}
 - Unique Species: {unique_species}
 - Average Confidence: {avg_confidence:.2%}
 
@@ -1060,8 +1004,6 @@ DETECTIONS:
                             report += f"\n{i}. {det['class']}\n"
                             report += f"   Class ID: {det['class_id']}\n"
                             report += f"   Confidence: {det['confidence']:.2%}\n"
-                            if det['class_id'] == 17:
-                                report += "   SARDINE\n"
                         
                         st.download_button(
                             label="Download Report (TXT)",
@@ -1097,72 +1039,36 @@ DETECTIONS:
             """)
     
     # Species Reference
-    with st.expander("Complete Species List (19 Total) - Detection Performance", expanded=False):
-        st.markdown("""
-        **Legend:** 🟢 Excellent (mAP≥0.98) | ✅ Good (mAP≥0.85) | ⚠️ Poor/Needs Training (mAP<0.80 or 0)
-        """)
-        
+    with st.expander("Complete Species List (9 Total)", expanded=False):
         col_sp1, col_sp2 = st.columns(2)
         
         with col_sp1:
             st.markdown("""
-            1. ⚠️ Alepes Djedaba (Round Scad) - mAP: 0.000 (*141 images, not detecting*)
-            2. ⚠️ Atropus Atropos (Clupea) - mAP: 0.000 (*139 images, not detecting*)
-            3. ⚠️ Caranx Ignobilis (Giant Trevally) - mAP: 0.000 (*1 image only*)
-            4. <span style='color: #10b981; font-weight: 600;'>🟢 Chanos Chanos (Milkfish) - mAP: 0.985</span>
-            5. ⚠️ Decapterus Macarellus (Mackerel Scad) - mAP: 0.740
-            6. Euthynnus Affinis (Kawakawa Bonito) - *No validation data*
-            7. <span style='color: #10b981; font-weight: 600;'>🟢 Katsuwonus Pelamis (Skipjack Tuna) - mAP: 0.982</span>
-            8. ✅ Lutjanus Malabaricus (Malabar Red Snapper) - mAP: 0.871
-            9. Parastromateus Niger (Black Pomfret) - *No validation data*
-            10. ⚠️ Rastrelliger Kanagurta (Indian Mackerel) - mAP: 0.811
-            """, unsafe_allow_html=True)
+            1. Gilt-Head Bream
+            2. Red Sea Bream
+            3. Striped Red Mullet
+            4. Black Sea Sprat
+            5. House Mackerel
+            """)
         
         with col_sp2:
             st.markdown("""
-            11. Rastrelliger sp (Mackerel Species) - *No validation data*
-            12. <span style='color: #10b981; font-weight: 600;'>🟢 Scaridae (Parrotfish) - mAP: 0.987</span>
-            13. Scomber Japonicus (Chub Mackerel) - *No validation data*
-            14. Scomberomorus Guttatus (Indo-Pacific King Mackerel) - *No validation data*
-            15. ✅ Thunnus Alalunga (Albacore Tuna) - mAP: 0.952
-            16. ✅ Thunnus Obesus (Bigeye Tuna) - mAP: 0.958
-            17. Thunnus Tonggol (Longtail Tuna) - *No validation data*
-            18. <span style='color: #fb923c; font-weight: 600;'>⚠️ **Tribus Sardini (SARDINE)** - mAP: 0.995</span> ⭐ *Target* 🚨 **ONLY 1 IMAGE!**
-            19. <span style='color: #10b981; font-weight: 600;'>🟢 Upeneus Moluccensis (Goldband Goatfish) - mAP: 0.991</span>
-            """, unsafe_allow_html=True)
-        
-        st.markdown("<div style='height: 0.5rem;'></div>", unsafe_allow_html=True)
-        st.warning("""
-        🚨 **CRITICAL: SARDINE Training Issue**
-        
-        Your target species (SARDINE) has only **1 training image**! This is extremely insufficient:
-        - High mAP (0.995) is misleading - it's perfect on that 1 image only
-        - Model won't generalize to detect other sardines
-        - Minimum recommended: 50-100 images per class
-        - For production quality: 500+ images
-        
-        **Action Required:** Get more sardine images and retrain!
-        """)
-        
-        st.info("""
-        **Model Performance Summary:**
-        - Overall mAP50: **0.713** | mAP50-95: 0.574
-        - Precision: 0.664 | Recall: 0.690
-        - **Top 3 Detection:** Goldband Goatfish (0.991), Parrotfish (0.987), Milkfish (0.985)
-        - **Critical Issues:** Round Scad (0), Clupea (0), Giant Trevally (0), **SARDINE (only 1 image)**
-        - Species needing more training images: Round Scad, Clupea, Giant Trevally, SARDINE
-        """)
+            6. Red Mullet
+            7. Sea Bass
+            8. Shrimp
+            9. Trout
+            """)
     
     # Footer
     st.markdown("<div style='height: 2rem;'></div>", unsafe_allow_html=True)
     st.markdown("""
     <div style='text-align: center; padding: 2rem 0; color: #6c757d; border-top: 1px solid #e2e8f0;'>
-        <h3 style='color: #667eea; margin-bottom: 1rem;'>SardineVision AI</h3>
+        <h3 style='color: #667eea; margin-bottom: 1rem;'>Fish Detection AI</h3>
         <p style='font-size: 1.1rem; margin-bottom: 0.5rem;'>
             <strong>Advanced Fish Detection System</strong> | Powered by YOLOv8
         </p>
         <p style='font-size: 0.95rem;'>
-            Task 1: Detection & Counting | Trained on 4,645 images | 19 species including Sardines
+            Task 1: Detection & Counting | Trained on 1,796 images | 9 Fish Species
         </p>
         <p style='font-size: 0.85rem; margin-top: 1rem; color: #9ca3af;'>
             Built with Streamlit • Ultralytics YOLOv8 • OpenCV • PyTorch
