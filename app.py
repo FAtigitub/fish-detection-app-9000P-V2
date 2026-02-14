@@ -1074,14 +1074,7 @@ The model file size is small ({:.1f} MB), suggesting it may not be fully trained
                         </div>
                         """, unsafe_allow_html=True)
                     
-                    with col_stat3:
-                        avg_confidence = np.mean([d['confidence'] for d in detections]) if detections else 0
-                        st.markdown(f"""
-                        <div class="stats-card">
-                            <div class="stat-value">{avg_confidence:.0%}</div>
-                            <div class="stat-label">Avg Confidence</div>
-                        </div>
-                        """, unsafe_allow_html=True)
+                  
                     
                     # Detailed Detections with Interactive Elements
                     if detections:
