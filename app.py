@@ -31,15 +31,15 @@ st.markdown("""
     /* Hero Section - Enhanced with animation */
     .hero-section {
         background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        padding: 3rem 2rem;
-        border-radius: 25px;
+        padding: 1rem 1.5rem;
+        border-radius: 12px;
         text-align: center;
         color: white;
-        margin-bottom: 2rem;
-        box-shadow: 0 15px 35px rgba(102, 126, 234, 0.4);
+        margin-bottom: 1rem;
+        box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
         position: relative;
         overflow: hidden;
-        animation: fadeInDown 0.8s ease-out;
+        animation: fadeInDown 0.6s ease-out;
     }
     
     .hero-section::before {
@@ -70,13 +70,14 @@ st.markdown("""
     }
     
     .hero-title {
-        font-size: 3.5rem;
-        font-weight: 800;
-        margin-bottom: 0.5rem;
+        font-size: 2rem;
+        font-weight: 700;
+        margin-bottom: 0.2rem;
+        line-height: 1.2;
         text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
         position: relative;
         z-index: 1;
-        animation: slideIn 1s ease-out;
+        animation: slideIn 0.7s ease-out;
     }
     
     @keyframes slideIn {
@@ -91,28 +92,29 @@ st.markdown("""
     }
     
     .hero-subtitle {
-        font-size: 1.3rem;
+        font-size: 0.9rem;
         font-weight: 400;
         opacity: 0.95;
-        margin-top: 0.5rem;
+        margin-top: 0.1rem;
+        line-height: 1.3;
         position: relative;
         z-index: 1;
-        animation: slideIn 1.2s ease-out;
+        animation: slideIn 0.8s ease-out;
     }
     
     /* Stats Cards - Enhanced with attractive animations */
     .stats-card {
         background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
-        padding: 2rem;
-        border-radius: 20px;
-        box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        padding: 1rem;
+        border-radius: 10px;
+        box-shadow: 0 3px 12px rgba(0,0,0,0.08);
         border: 1px solid rgba(102, 126, 234, 0.1);
-        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        margin: 1rem 0;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        margin: 0.4rem 0;
         position: relative;
         overflow: hidden;
         cursor: pointer;
-        animation: fadeInUp 0.6s ease-out;
+        animation: fadeInUp 0.5s ease-out;
     }
     
     @keyframes fadeInUp {
@@ -142,21 +144,21 @@ st.markdown("""
     }
     
     .stats-card:hover {
-        transform: translateY(-10px) scale(1.02);
-        box-shadow: 0 15px 40px rgba(102, 126, 234, 0.25);
+        transform: translateY(-5px) scale(1.01);
+        box-shadow: 0 8px 20px rgba(102, 126, 234, 0.2);
         border-color: rgba(102, 126, 234, 0.3);
     }
     
     .stat-value {
-        font-size: 3.5rem;
-        font-weight: 800;
+        font-size: 2rem;
+        font-weight: 700;
         background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
         margin: 0;
         line-height: 1;
-        animation: countUp 1s ease-out;
+        animation: countUp 0.7s ease-out;
     }
     
     @keyframes countUp {
@@ -171,23 +173,24 @@ st.markdown("""
     }
     
     .stat-label {
-        font-size: 1rem;
+        font-size: 0.8rem;
         color: #6c757d;
         font-weight: 600;
-        margin-top: 0.5rem;
+        margin-top: 0.3rem;
         text-transform: uppercase;
-        letter-spacing: 1.5px;
+        letter-spacing: 1px;
     }
     
     /* Fish Alert */
     .fish-alert {
         background: linear-gradient(135deg, #ffd89b 0%, #fb923c 100%);
         color: white;
-        padding: 1.5rem;
-        border-radius: 15px;
-        box-shadow: 0 5px 15px rgba(251, 146, 60, 0.3);
-        margin: 1.5rem 0;
+        padding: 0.8rem;
+        border-radius: 8px;
+        box-shadow: 0 3px 10px rgba(251, 146, 60, 0.3);
+        margin: 0.8rem 0;
         font-weight: 600;
+        font-size: 0.9rem;
         animation: pulse 2s infinite;
     }
     
@@ -199,29 +202,29 @@ st.markdown("""
     /* Detection Box */
     .detection-box {
         background: white;
-        padding: 1.5rem;
-        border-radius: 15px;
-        border-left: 5px solid #667eea;
-        box-shadow: 0 3px 10px rgba(0,0,0,0.08);
-        margin: 1rem 0;
+        padding: 0.7rem;
+        border-radius: 8px;
+        border-left: 4px solid #667eea;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        margin: 0.4rem 0;
         transition: all 0.3s ease;
     }
     
     .detection-box:hover {
-        box-shadow: 0 5px 20px rgba(0,0,0,0.12);
-        transform: translateX(5px);
+        box-shadow: 0 3px 12px rgba(0,0,0,0.1);
+        transform: translateX(3px);
     }
     
     .detection-title {
         font-weight: 600;
         color: #2d3748;
-        font-size: 1.1rem;
+        font-size: 0.85rem;
     }
     
     .detection-value {
         color: #667eea;
-        font-weight: 700;
-        font-size: 1rem;
+        font-weight: 600;
+        font-size: 0.9rem;
     }
     
     /* Buttons - Enhanced with Ripple Effect */
@@ -229,14 +232,14 @@ st.markdown("""
         background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         color: white;
         border: none;
-        border-radius: 50px;
-        padding: 1rem 3rem;
-        font-weight: 700;
-        font-size: 1.1rem;
+        border-radius: 8px;
+        padding: 0.5rem 1.2rem;
+        font-weight: 600;
+        font-size: 0.9rem;
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
-        text-transform: uppercase;
-        letter-spacing: 1.5px;
+        box-shadow: 0 3px 12px rgba(102, 126, 234, 0.35);
+        text-transform: none;
+        letter-spacing: 0.5px;
         position: relative;
         overflow: hidden;
         cursor: pointer;
@@ -261,44 +264,46 @@ st.markdown("""
     }
     
     .stButton > button:hover {
-        transform: translateY(-3px) scale(1.05);
-        box-shadow: 0 10px 30px rgba(102, 126, 234, 0.6);
+        transform: translateY(-2px) scale(1.02);
+        box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
         background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
     }
     
     .stButton > button:active {
-        transform: translateY(-1px) scale(1.02);
-        box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        transform: translateY(0px) scale(1);
+        box-shadow: 0 3px 10px rgba(102, 126, 234, 0.4);
     }
     
     /* File Uploader - Enhanced */
     .uploadedFile {
-        border-radius: 15px;
+        border-radius: 8px;
         border: 2px solid #667eea;
-        padding: 1rem;
+        padding: 0.7rem;
         background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
         transition: all 0.3s ease;
-        animation: fadeInUp 0.5s ease-out;
+        animation: fadeInUp 0.4s ease-out;
     }
     
     .uploadedFile:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 5px 20px rgba(102, 126, 234, 0.2);
+        transform: translateY(-2px);
+        box-shadow: 0 3px 15px rgba(102, 126, 234, 0.2);
         border-color: #764ba2;
     }
     
     /* Expander - Enhanced */
     .streamlit-expanderHeader {
         background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
-        border-radius: 10px;
+        border-radius: 8px;
         border: 1px solid #e2e8f0;
         transition: all 0.3s ease;
+        font-size: 0.85rem;
+        padding: 0.5rem;
     }
     
     .streamlit-expanderHeader:hover {
         background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
         border-color: #667eea;
-        box-shadow: 0 3px 10px rgba(102, 126, 234, 0.15);
+        box-shadow: 0 2px 8px rgba(102, 126, 234, 0.12);
     }
     
     /* Download Button */
@@ -306,16 +311,17 @@ st.markdown("""
         background: linear-gradient(135deg, #10b981 0%, #059669 100%);
         color: white;
         border: none;
-        border-radius: 50px;
-        padding: 0.75rem 2rem;
+        border-radius: 8px;
+        padding: 0.5rem 1rem;
         font-weight: 600;
+        font-size: 0.85rem;
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);
+        box-shadow: 0 3px 12px rgba(16, 185, 129, 0.35);
     }
     
     .stDownloadButton > button:hover {
-        transform: translateY(-3px) scale(1.05);
-        box-shadow: 0 8px 25px rgba(16, 185, 129, 0.6);
+        transform: translateY(-2px) scale(1.02);
+        box-shadow: 0 5px 18px rgba(16, 185, 129, 0.5);
         background: linear-gradient(135deg, #059669 0%, #10b981 100%);
     }
     
@@ -329,8 +335,8 @@ st.markdown("""
         background: linear-gradient(90deg, #667eea 0%, #764ba2 50%, #667eea 100%);
         background-size: 200% 100%;
         animation: progressShimmer 2s linear infinite;
-        border-radius: 10px;
-        box-shadow: 0 2px 10px rgba(102, 126, 234, 0.4);
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
     }
     
     @keyframes progressShimmer {
@@ -345,12 +351,13 @@ st.markdown("""
     /* Info Box - Enhanced */
     .info-box {
         background: linear-gradient(135deg, #e0f2fe 0%, #bfdbfe 100%);
-        padding: 1.5rem;
-        border-radius: 15px;
-        border-left: 5px solid #3b82f6;
-        margin: 1rem 0;
-        animation: slideInRight 0.5s ease-out;
+        padding: 0.8rem;
+        border-radius: 8px;
+        border-left: 4px solid #3b82f6;
+        margin: 0.6rem 0;
+        animation: slideInRight 0.4s ease-out;
         transition: all 0.3s ease;
+        font-size: 0.85rem;
     }
     
     @keyframes slideInRight {
@@ -365,19 +372,17 @@ st.markdown("""
     }
     
     .info-box:hover {
-        transform: translateX(-5px);
-        box-shadow: 0 5px 20px rgba(59, 130, 246, 0.3);
-    }
-        margin: 1rem 0;
+        transform: translateX(-3px);
+        box-shadow: 0 3px 12px rgba(59, 130, 246, 0.25);
     }
     
     /* 2026 Clean Design Standards - Enhanced Interactive */
     .upload-section {
         background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
-        padding: 3rem;
-        border-radius: 20px;
+        padding: 1.5rem;
+        border-radius: 10px;
         border: 2px dashed #667eea;
-        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         position: relative;
         overflow: hidden;
         animation: pulse 2s ease-in-out infinite;
@@ -397,8 +402,8 @@ st.markdown("""
     .upload-section:hover {
         border-color: #764ba2;
         background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
-        transform: scale(1.02);
-        box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);
+        transform: scale(1.01);
+        box-shadow: 0 5px 20px rgba(102, 126, 234, 0.15);
         animation: none;
     }
     
@@ -406,18 +411,19 @@ st.markdown("""
     h3 {
         font-weight: 600;
         color: #1a202c;
-        margin-bottom: 0.5rem;
-        font-size: 1.5rem;
+        margin-bottom: 0.4rem;
+        font-size: 1.1rem;
+        line-height: 1.3;
     }
     
     /* Success Box - Enhanced */
     .success-box {
         background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
-        padding: 1.5rem;
-        border-radius: 15px;
-        border-left: 5px solid #10b981;
-        margin: 1rem 0;
-        animation: slideInLeft 0.5s ease-out;
+        padding: 0.7rem;
+        border-radius: 8px;
+        border-left: 4px solid #10b981;
+        margin: 0.4rem 0;
+        animation: slideInLeft 0.4s ease-out;
         transition: all 0.3s ease;
     }
     
@@ -433,18 +439,18 @@ st.markdown("""
     }
     
     .success-box:hover {
-        transform: translateX(5px);
-        box-shadow: 0 5px 20px rgba(16, 185, 129, 0.3);
+        transform: translateX(3px);
+        box-shadow: 0 3px 12px rgba(16, 185, 129, 0.2);
     }
     
     /* Image Container - Enhanced */
     .image-container {
-        border-radius: 15px;
+        border-radius: 8px;
         overflow: hidden;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        margin: 1rem 0;
-        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        animation: fadeInScale 0.6s ease-out;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        margin: 0.6rem 0;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        animation: fadeInScale 0.5s ease-out;
         position: relative;
     }
     
@@ -472,8 +478,8 @@ st.markdown("""
     }
     
     .image-container:hover {
-        transform: scale(1.02);
-        box-shadow: 0 20px 50px rgba(102, 126, 234, 0.3);
+        transform: scale(1.01);
+        box-shadow: 0 8px 25px rgba(102, 126, 234, 0.2);
     }
     
     .image-container:hover::before {
@@ -482,13 +488,13 @@ st.markdown("""
     
     /* Metric Enhancement */
     div[data-testid="stMetricValue"] {
-        font-size: 2.5rem;
+        font-size: 1.8rem;
         font-weight: 700;
         background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
-        animation: fadeIn 0.8s ease-out;
+        animation: fadeIn 0.6s ease-out;
     }
     
     @keyframes fadeIn {
@@ -507,41 +513,42 @@ st.markdown("""
     
     /* Alert Boxes Enhancement */
     .stAlert {
-        border-radius: 15px;
-        animation: slideInLeft 0.5s ease-out;
+        border-radius: 8px;
+        animation: slideInLeft 0.4s ease-out;
         transition: all 0.3s ease;
+        font-size: 0.9rem;
     }
     
     .stAlert:hover {
-        transform: translateX(5px);
+        transform: translateX(3px);
     }
     
     /* Detection Box Styles - Color Coded and Animated */
     .detection-high {
         background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
-        border-left: 5px solid #10b981;
-        padding: 1rem;
-        border-radius: 10px;
-        margin: 0.5rem 0;
-        animation: bounceIn 0.6s ease-out;
+        border-left: 4px solid #10b981;
+        padding: 0.7rem;
+        border-radius: 8px;
+        margin: 0.3rem 0;
+        animation: bounceIn 0.5s ease-out;
     }
     
     .detection-medium {
         background: linear-gradient(135deg, #fed7aa 0%, #fdba74 100%);
-        border-left: 5px solid #fb923c;
-        padding: 1rem;
-        border-radius: 10px;
-        margin: 0.5rem 0;
-        animation: bounceIn 0.6s ease-out;
+        border-left: 4px solid #fb923c;
+        padding: 0.7rem;
+        border-radius: 8px;
+        margin: 0.3rem 0;
+        animation: bounceIn 0.5s ease-out;
     }
     
     .detection-low {
         background: linear-gradient(135deg, #fecaca 0%, #fca5a5 100%);
-        border-left: 5px solid #ef4444;
-        padding: 1rem;
-        border-radius: 10px;
-        margin: 0.5rem 0;
-        animation: bounceIn 0.6s ease-out;
+        border-left: 4px solid #ef4444;
+        padding: 0.7rem;
+        border-radius: 8px;
+        margin: 0.3rem 0;
+        animation: bounceIn 0.5s ease-out;
     }
     
     @keyframes bounceIn {
@@ -593,128 +600,35 @@ st.markdown("""
     /* Section Dividers */
     hr {
         border: none;
-        height: 2px;
+        height: 1px;
         background: linear-gradient(90deg, transparent 0%, #667eea 50%, transparent 100%);
-        margin: 2rem 0;
-        animation: fadeIn 1s ease-out;
+        margin: 1rem 0;
+        animation: fadeIn 0.8s ease-out;
     }
     
     /* Radio Buttons - Enhanced */
     .stRadio > div {
         background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
-        padding: 1rem;
-        border-radius: 15px;
+        padding: 0.6rem;
+        border-radius: 8px;
         border: 1px solid #e2e8f0;
         transition: all 0.3s ease;
+        font-size: 0.9rem;
     }
     
     .stRadio > div:hover {
         border-color: #667eea;
-        box-shadow: 0 3px 10px rgba(102, 126, 234, 0.15);
+        box-shadow: 0 2px 8px rgba(102, 126, 234, 0.12);
     }
     
     /* Camera Input */
     [data-testid="stCameraInput"] {
-        border-radius: 15px;
+        border-radius: 8px;
         transition: all 0.3s ease;
     }
     
     [data-testid="stCameraInput"]:hover {
-        box-shadow: 0 5px 20px rgba(102, 126, 234, 0.2);
-    }
-    
-    /* Advanced Animations for Interactive Statistics */
-    @keyframes slideIn {
-        from {
-            width: 0%;
-            opacity: 0;
-        }
-        to {
-            width: var(--target-width);
-            opacity: 1;
-        }
-    }
-    
-    @keyframes shimmer {
-        0% {
-            background-position: -1000px 0;
-        }
-        100% {
-            background-position: 1000px 0;
-        }
-    }
-    
-    @keyframes scaleIn {
-        from {
-            transform: scale(0.8);
-            opacity: 0;
-        }
-        to {
-            transform: scale(1);
-            opacity: 1;
-        }
-    }
-    
-    @keyframes glow {
-        0%, 100% {
-            box-shadow: 0 0 5px rgba(102, 126, 234, 0.5);
-        }
-        50% {
-            box-shadow: 0 0 20px rgba(102, 126, 234, 0.8);
-        }
-    }
-    
-    /* Enhanced Statistics Cards with Glassmorphism */
-    .stats-card-enhanced {
-        background: rgba(255, 255, 255, 0.9);
-        backdrop-filter: blur(10px);
-        border: 1px solid rgba(255, 255, 255, 0.3);
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    
-    .stats-card-enhanced:hover {
-        transform: translateY(-8px) scale(1.03);
-        box-shadow: 0 15px 45px rgba(102, 126, 234, 0.3);
-    }
-    
-    /* Animated Progress Bars */
-    .progress-bar-animated {
-        position: relative;
-        overflow: hidden;
-    }
-    
-    .progress-bar-animated::after {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-        animation: shimmer 2s infinite;
-    }
-    
-    /* Interactive Hover Effects */
-    .interactive-card {
-        cursor: pointer;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    
-    .interactive-card:hover {
-        transform: translateX(8px);
-        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-    }
-    
-    /* Confidence Badge Animations */
-    .confidence-badge {
-        animation: scaleIn 0.5s ease-out;
-        transition: all 0.3s ease;
-    }
-    
-    .confidence-badge:hover {
-        transform: scale(1.1);
-        filter: brightness(1.1);
+        box-shadow: 0 3px 15px rgba(102, 126, 234, 0.18);
     }
 </style>
 """, unsafe_allow_html=True)
@@ -750,7 +664,6 @@ def main():
     # Sidebar Configuration
     with st.sidebar:
         st.markdown("## Detection Settings")
-        st.markdown("<div style='height: 0.5rem;'></div>", unsafe_allow_html=True)
         
         confidence_threshold = st.slider(
             "Confidence Threshold",
@@ -786,7 +699,7 @@ def main():
             help="Maximum number of detections per image"
         )
         
-        st.markdown("<div style='height: 1rem;'></div>", unsafe_allow_html=True)
+        st.markdown("---")
         st.markdown("### Advanced Options")
         
         use_tta = st.checkbox(
@@ -795,13 +708,13 @@ def main():
             help="✓ Enabled by default - Improves detection accuracy with multiple augmented predictions"
         )
         
-        st.markdown("<div style='height: 1rem;'></div>", unsafe_allow_html=True)
+        st.markdown("---")
         st.markdown("### Display Options")
         show_labels = st.checkbox("Show Labels", value=True)
         show_confidence = st.checkbox("Show Confidence Scores", value=True)
         show_boxes = st.checkbox("Show Bounding Boxes", value=True)
         
-        st.markdown("<div style='height: 2rem;'></div>", unsafe_allow_html=True)
+        st.markdown("---")
         st.markdown("## Model Information")
         
         with st.expander("🔧 Model Details", expanded=False):
@@ -837,19 +750,19 @@ def main():
         with st.expander("🎯 Model Performance", expanded=True):
             st.markdown("""
             <div style='background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%); 
-                        padding: 1.5rem; border-radius: 15px; border-left: 5px solid #10b981;'>
-                <h4 style='color: #065f46; margin-top: 0;'>🏆 Excellent Detection Accuracy</h4>
-                <div style='display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1rem;'>
+                        padding: 1rem; border-radius: 10px; border-left: 4px solid #10b981;'>
+                <h4 style='color: #065f46; margin-top: 0; font-size: 1rem;'>🏆 Excellent Detection Accuracy</h4>
+                <div style='display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; margin-top: 0.8rem;'>
                     <div>
-                        <p style='margin: 0.5rem 0; color: #047857;'><strong>mAP50:</strong> <span style='font-size: 1.3rem; color: #059669;'>99.50%</span></p>
-                        <p style='margin: 0.5rem 0; color: #047857;'><strong>mAP50-95:</strong> <span style='font-size: 1.3rem; color: #059669;'>83.23%</span></p>
+                        <p style='margin: 0.3rem 0; color: #047857; font-size: 0.85rem;'><strong>mAP50:</strong> <span style='font-size: 1.1rem; color: #059669;'>99.50%</span></p>
+                        <p style='margin: 0.3rem 0; color: #047857; font-size: 0.85rem;'><strong>mAP50-95:</strong> <span style='font-size: 1.1rem; color: #059669;'>83.23%</span></p>
                     </div>
                     <div>
-                        <p style='margin: 0.5rem 0; color: #047857;'><strong>Precision:</strong> <span style='font-size: 1.3rem; color: #059669;'>99.92%</span></p>
-                        <p style='margin: 0.5rem 0; color: #047857;'><strong>Recall:</strong> <span style='font-size: 1.3rem; color: #059669;'>100.00%</span></p>
+                        <p style='margin: 0.3rem 0; color: #047857; font-size: 0.85rem;'><strong>Precision:</strong> <span style='font-size: 1.1rem; color: #059669;'>99.92%</span></p>
+                        <p style='margin: 0.3rem 0; color: #047857; font-size: 0.85rem;'><strong>Recall:</strong> <span style='font-size: 1.1rem; color: #059669;'>100.00%</span></p>
                     </div>
                 </div>
-                <p style='margin-top: 1rem; margin-bottom: 0; color: #065f46; font-size: 0.9rem;'>
+                <p style='margin-top: 0.8rem; margin-bottom: 0; color: #065f46; font-size: 0.8rem;'>
                     ✓ Target mAP50 >85%: <strong>EXCEEDED</strong> (99.50%)<br>
                     ✓ Target mAP50-95 >70%: <strong>EXCEEDED</strong> (83.23%)
                 </p>
@@ -903,7 +816,7 @@ def main():
             """)
     
     # Main Content Area - Clean 2026 Design
-    st.markdown("<br>", unsafe_allow_html=True)
+    st.markdown("---")
     
     # Check model file size and warn if it seems untrained
     if os.path.exists('best.pt'):
@@ -928,7 +841,7 @@ The model file size is small ({:.1f} MB), suggesting it may not be fully trained
     col1, col2 = st.columns([1, 1], gap="large")
     
     with col1:
-        st.markdown("### Get Fish Image")
+        st.markdown("### 📸 Get Fish Image")
         
         # Input method selector
         input_method = st.radio(
@@ -941,7 +854,7 @@ The model file size is small ({:.1f} MB), suggesting it may not be fully trained
         image = None
         
         if input_method == "📤 Upload Image":
-            st.markdown("<p style='color: #6c757d; margin-bottom: 1.5rem;'>Drag and drop or click to upload JPG, JPEG, or PNG images</p>", unsafe_allow_html=True)
+            st.markdown("<p style='color: #6c757d; margin-bottom: 1rem; font-size: 0.85rem;'>Drag and drop or click to upload JPG, JPEG, or PNG images</p>", unsafe_allow_html=True)
             
             uploaded_file = st.file_uploader(
                 "Choose a fish image...",
@@ -954,7 +867,7 @@ The model file size is small ({:.1f} MB), suggesting it may not be fully trained
                 image = Image.open(uploaded_file)
         
         else:  # Take Photo
-            st.markdown("<p style='color: #6c757d; margin-bottom: 1.5rem;'>Click the button below to capture an image from your camera</p>", unsafe_allow_html=True)
+            st.markdown("<p style='color: #6c757d; margin-bottom: 1rem; font-size: 0.85rem;'>Click the button below to capture an image from your camera</p>", unsafe_allow_html=True)
             
             camera_photo = st.camera_input(
                 "Take a photo",
@@ -973,8 +886,8 @@ The model file size is small ({:.1f} MB), suggesting it may not be fully trained
             st.markdown('</div>', unsafe_allow_html=True)
             
             # Detection button with modern styling - Cleaner spacing
-            st.markdown("<br>", unsafe_allow_html=True)
-            detect_button = st.button("Detect Fish", type="primary", use_container_width=True)
+            st.markdown("---")
+            detect_button = st.button("🔍 Detect Fish", type="primary", use_container_width=True)
             
             if detect_button:
                 # Progress bar for detection
@@ -1035,7 +948,7 @@ The model file size is small ({:.1f} MB), suggesting it may not be fully trained
                 
                 # Display results in col2
                 with col2:
-                    st.markdown("### Detection Results")
+                    st.markdown("### 🎯 Detection Results")
                     
                     # Annotated image
                     annotated_img = result.plot(
@@ -1050,213 +963,76 @@ The model file size is small ({:.1f} MB), suggesting it may not be fully trained
                     st.image(annotated_img_rgb, use_column_width=True)
                     st.markdown('</div>', unsafe_allow_html=True)
                     
-                    # Statistics Cards - Enhanced Interactive Design
-                    st.markdown("<div style='height: 1rem;'></div>", unsafe_allow_html=True)
-                    st.markdown("### 📊 Detection Analytics")
+                    # Statistics Cards
+                    st.markdown("---")
+                    st.markdown("### 📊 Detection Statistics")
                     
-                    # Top-level metrics with animated cards
-                    col_stat1, col_stat2, col_stat3 = st.columns(3)
+                    col_stat1, col_stat2 = st.columns(2)
                     
                     with col_stat1:
-                        st.markdown(f"""
+                        st.markdown("""
                         <div class="stats-card">
-                            <div class="stat-value">{len(detections)}</div>
+                            <div class="stat-value">{}</div>
                             <div class="stat-label">Total Fish</div>
                         </div>
-                        """, unsafe_allow_html=True)
+                        """.format(len(detections)), unsafe_allow_html=True)
                     
                     with col_stat2:
                         unique_species = len(set([d['class'] for d in detections]))
-                        st.markdown(f"""
+                        st.markdown("""
                         <div class="stats-card">
-                            <div class="stat-value">{unique_species}</div>
+                            <div class="stat-value">{}</div>
                             <div class="stat-label">Species Found</div>
                         </div>
-                        """, unsafe_allow_html=True)
+                        """.format(unique_species), unsafe_allow_html=True)
                     
-                  
-                    
-                    # Detailed Detections with Interactive Elements
+                    # Detailed Detections
                     if detections:
-                        st.markdown("<div style='height: 1.5rem;'></div>", unsafe_allow_html=True)
+                        st.markdown("---")
+                        st.markdown("### 📋 Detailed Detection List")
                         
-                        # Species Distribution Analysis
-                        st.markdown("#### 🐠 Species Distribution")
-                        species_counts = {}
-                        for det in detections:
-                            species_counts[det['class']] = species_counts.get(det['class'], 0) + 1
-                        
-                        # Create interactive progress bars for each species
-                        max_count = max(species_counts.values())
-                        for species, count in sorted(species_counts.items(), key=lambda x: x[1], reverse=True):
-                            percentage = (count / len(detections)) * 100
-                            bar_width = (count / max_count) * 100
-                            
-                            # Color coding based on count
-                            if count >= max_count * 0.7:
-                                color = "#10b981"  # Green
-                                bg_color = "#d1fae5"
-                            elif count >= max_count * 0.4:
-                                color = "#3b82f6"  # Blue
-                                bg_color = "#dbeafe"
-                            else:
-                                color = "#f59e0b"  # Orange
-                                bg_color = "#fef3c7"
-                            
-                            st.markdown(f"""
-                            <div style='margin: 0.8rem 0; padding: 1rem; background: {bg_color}; 
-                                        border-radius: 12px; border-left: 4px solid {color};
-                                        transition: all 0.3s ease; cursor: pointer;'
-                                 onmouseover="this.style.transform='translateX(5px)'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.1)';"
-                                 onmouseout="this.style.transform='translateX(0)'; this.style.boxShadow='none';">
-                                <div style='display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;'>
-                                    <span style='font-weight: 600; color: #1f2937; font-size: 1rem;'>{species}</span>
-                                    <span style='font-weight: 700; color: {color}; font-size: 1.1rem;'>{count} fish ({percentage:.1f}%)</span>
-                                </div>
-                                <div style='background: white; height: 8px; border-radius: 10px; overflow: hidden; box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);'>
-                                    <div style='background: linear-gradient(90deg, {color}, {color}dd); 
-                                                height: 100%; width: {bar_width}%; 
-                                                border-radius: 10px;
-                                                animation: slideIn 0.8s ease-out;
-                                                box-shadow: 0 0 10px {color}66;'></div>
-                                </div>
-                            </div>
-                            """, unsafe_allow_html=True)
-                        
-                        # Confidence Level Breakdown
-                        st.markdown("<div style='height: 1.5rem;'></div>", unsafe_allow_html=True)
-                        st.markdown("#### 📈 Confidence Analysis")
-                        
-                        # Calculate confidence distribution
-                        high_conf = len([d for d in detections if d['confidence'] >= 0.7])
-                        medium_conf = len([d for d in detections if 0.4 <= d['confidence'] < 0.7])
-                        low_conf = len([d for d in detections if d['confidence'] < 0.4])
-                        
-                        total = len(detections)
-                        
-                        # Interactive confidence breakdown with animated bars
-                        confidence_data = [
-                            ("High (≥70%)", high_conf, "#10b981", "#d1fae5"),
-                            ("Medium (40-70%)", medium_conf, "#f59e0b", "#fef3c7"),
-                            ("Low (<40%)", low_conf, "#ef4444", "#fee2e2")
-                        ]
-                        
-                        for label, count, color, bg_color in confidence_data:
-                            percentage = (count / total * 100) if total > 0 else 0
-                            st.markdown(f"""
-                            <div style='margin: 0.8rem 0; padding: 1.2rem; 
-                                        background: linear-gradient(135deg, {bg_color} 0%, white 100%);
-                                        border-radius: 15px; border: 2px solid {color}33;
-                                        transition: all 0.3s ease;'
-                                 onmouseover="this.style.borderColor='{color}'; this.style.transform='scale(1.02)';"
-                                 onmouseout="this.style.borderColor='{color}33'; this.style.transform='scale(1)';">
-                                <div style='display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.8rem;'>
-                                    <span style='font-weight: 600; color: #1f2937; font-size: 1.05rem;'>
-                                        <span style='display: inline-block; width: 12px; height: 12px; 
-                                                     background: {color}; border-radius: 50%; margin-right: 8px;'></span>
-                                        {label}
-                                    </span>
-                                    <span style='font-weight: 700; color: {color}; font-size: 1.2rem;'>{count}</span>
-                                </div>
-                                <div style='background: #f3f4f6; height: 12px; border-radius: 10px; overflow: hidden;'>
-                                    <div style='background: linear-gradient(90deg, {color}, {color}cc); 
-                                                height: 100%; width: {percentage}%; 
-                                                border-radius: 10px;
-                                                animation: slideIn 1s ease-out;
-                                                position: relative;
-                                                box-shadow: 0 2px 8px {color}44;'>
-                                        <div style='position: absolute; right: 8px; top: 50%; transform: translateY(-50%);
-                                                    color: white; font-size: 0.75rem; font-weight: 600;'>
-                                            {percentage:.1f}%
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            """, unsafe_allow_html=True)
-                        
-                        # Overall Statistics Summary Box
-                        st.markdown("<div style='height: 1.5rem;'></div>", unsafe_allow_html=True)
-                        min_conf = min([d['confidence'] for d in detections])
-                        max_conf = max([d['confidence'] for d in detections])
-                        
-                        st.markdown(f"""
-                        <div style='background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-                                    padding: 1.5rem; border-radius: 20px; color: white;
-                                    box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
-                                    margin: 1rem 0;'>
-                            <h4 style='margin: 0 0 1rem 0; font-size: 1.2rem; font-weight: 700;'>
-                                📊 Summary Statistics
-                            </h4>
-                            <div style='display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;'>
-                                <div style='background: rgba(255,255,255,0.15); padding: 1rem; border-radius: 12px;
-                                            backdrop-filter: blur(10px);'>
-                                    <div style='font-size: 0.85rem; opacity: 0.9; margin-bottom: 0.3rem;'>Average Confidence</div>
-                                    <div style='font-size: 1.8rem; font-weight: 800;'>{avg_confidence:.1%}</div>
-                                </div>
-                                <div style='background: rgba(255,255,255,0.15); padding: 1rem; border-radius: 12px;
-                                            backdrop-filter: blur(10px);'>
-                                    <div style='font-size: 0.85rem; opacity: 0.9; margin-bottom: 0.3rem;'>Confidence Range</div>
-                                    <div style='font-size: 1.4rem; font-weight: 700;'>{min_conf:.0%} - {max_conf:.0%}</div>
-                                </div>
-                            </div>
-                        </div>
-                        """, unsafe_allow_html=True)
-                        
-                        # Detailed Detection List
-                        st.markdown("<div style='height: 1.5rem;'></div>", unsafe_allow_html=True)
-                        st.markdown("#### 🔍 Individual Detections")
+                        # Calculate for report (not displayed)
+                        avg_confidence = np.mean([d['confidence'] for d in detections])
                         
                         for i, det in enumerate(detections, 1):
-                            # Color based on confidence
-                            if det['confidence'] >= 0.7:
-                                badge_color = "#10b981"
-                                badge_bg = "#d1fae5"
-                            elif det['confidence'] >= 0.4:
-                                badge_color = "#f59e0b"
-                                badge_bg = "#fef3c7"
-                            else:
-                                badge_color = "#ef4444"
-                                badge_bg = "#fee2e2"
                             
                             with st.expander(
-                                f"🐟 Fish #{i}: {det['class']} - {det['confidence']:.1%}",
+                                f"Fish #{i}: {det['class']} ({det['confidence']:.1%})",
                                 expanded=False
                             ):
-                                st.markdown(f"""
-                                <div style='padding: 0.5rem;'>
-                                    <div style='display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;'>
-                                        <div style='background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
-                                                    padding: 1rem; border-radius: 12px; border-left: 4px solid #667eea;'>
-                                            <div style='color: #6c757d; font-size: 0.85rem; margin-bottom: 0.3rem;'>Species</div>
-                                            <div style='color: #667eea; font-weight: 700; font-size: 1.1rem;'>{det['class']}</div>
-                                        </div>
-                                        <div style='background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
-                                                    padding: 1rem; border-radius: 12px; border-left: 4px solid #667eea;'>
-                                            <div style='color: #6c757d; font-size: 0.85rem; margin-bottom: 0.3rem;'>Class ID</div>
-                                            <div style='color: #667eea; font-weight: 700; font-size: 1.1rem;'>{det['class_id']}</div>
+                                col_det1, col_det2 = st.columns(2)
+                                
+                                with col_det1:
+                                    st.markdown(f"""
+                                    <div class="detection-box">
+                                        <div class="detection-title">Species</div>
+                                        <div class="detection-value">{det['class']}</div>
+                                    </div>
+                                    """, unsafe_allow_html=True)
+                                    
+                                    st.markdown(f"""
+                                    <div class="detection-box">
+                                        <div class="detection-title">Class ID</div>
+                                        <div class="detection-value">{det['class_id']}</div>
+                                    </div>
+                                    """, unsafe_allow_html=True)
+                                
+                                with col_det2:
+                                    confidence_color = "#10b981" if det['confidence'] > 0.7 else "#fb923c" if det['confidence'] > 0.4 else "#ef4444"
+                                    st.markdown(f"""
+                                    <div class="detection-box">
+                                        <div class="detection-title">Confidence</div>
+                                        <div class="detection-value" style="color: {confidence_color}">
+                                            {det['confidence']:.2%}
                                         </div>
                                     </div>
-                                    <div style='background: {badge_bg}; padding: 1.2rem; border-radius: 12px;
-                                                border-left: 4px solid {badge_color};'>
-                                        <div style='color: #1f2937; font-size: 0.85rem; margin-bottom: 0.5rem;'>Confidence Score</div>
-                                        <div style='display: flex; align-items: center; gap: 1rem;'>
-                                            <div style='flex: 1; background: white; height: 10px; border-radius: 10px; overflow: hidden;'>
-                                                <div style='background: {badge_color}; height: 100%; width: {det['confidence']*100}%;
-                                                            border-radius: 10px; transition: width 0.5s ease;'></div>
-                                            </div>
-                                            <div style='color: {badge_color}; font-weight: 800; font-size: 1.3rem; min-width: 60px;'>
-                                                {det['confidence']:.1%}
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                """, unsafe_allow_html=True)
+                                    """, unsafe_allow_html=True)
                     else:
                         st.info("No fish detected. Try adjusting the confidence threshold in the sidebar.")
                     
                     # Download Section
-                    st.markdown("<div style='height: 2rem;'></div>", unsafe_allow_html=True)
-                    st.markdown("### Download Results")
+                    st.markdown("---")
+                    st.markdown("### 💾 Download Results"))
                     
                     col_dl1, col_dl2 = st.columns(2)
                     
@@ -1298,7 +1074,7 @@ DETECTIONS:
                         )
     
     # Footer with modern design
-    st.markdown("<div style='height: 3rem;'></div>", unsafe_allow_html=True)
+    st.markdown("---")
     
     # Quick Tips Section
     with st.expander("Quick Tips for Best Results", expanded=False):
@@ -1344,23 +1120,23 @@ DETECTIONS:
             """)
     
     # Footer
-    st.markdown("<div style='height: 2rem;'></div>", unsafe_allow_html=True)
+    st.markdown("---")
     st.markdown("""
-    <div style='text-align: center; padding: 2rem 0; color: #6c757d; border-top: 1px solid #e2e8f0;'>
-        <h3 style='color: #667eea; margin-bottom: 1rem;'>🐟 Fish Detection AI</h3>
-        <p style='font-size: 1.1rem; margin-bottom: 0.5rem;'>
+    <div style='text-align: center; padding: 1rem 0; color: #6c757d;'>
+        <h3 style='color: #667eea; margin-bottom: 0.5rem; font-size: 1.2rem;'>🐟 Fish Detection AI</h3>
+        <p style='font-size: 0.85rem; margin-bottom: 0.3rem;'>
             <strong>Advanced Fish Detection System</strong> | Powered by YOLOv8
         </p>
-        <p style='font-size: 0.95rem;'>
+        <p style='font-size: 0.8rem;'>
             Detection & Counting | Trained on 9,000 images | 9 Fish Species
         </p>
-        <p style='font-size: 0.9rem; margin-top: 0.5rem;'>
+        <p style='font-size: 0.8rem; margin-top: 0.4rem;'>
             <strong style='color: #10b981;'>mAP50: 99.5%</strong> • 
             <strong style='color: #10b981;'>mAP50-95: 83.2%</strong> • 
             <strong style='color: #10b981;'>Precision: 99.9%</strong> • 
             <strong style='color: #10b981;'>Recall: 100%</strong>
         </p>
-        <p style='font-size: 0.85rem; margin-top: 1rem; color: #9ca3af;'>
+        <p style='font-size: 0.75rem; margin-top: 0.6rem; color: #9ca3af;'>
             Built with Streamlit • Ultralytics YOLOv8 • OpenCV • PyTorch
         </p>
     </div>
